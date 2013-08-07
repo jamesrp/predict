@@ -30,21 +30,14 @@ def predict(s):
             successes.append(0)
         counts[x0+x1+x2] += 1
         x0, x1 = x1, x2
-    return score,total, successes
+    return score/float(total)
 
-#s = '011010010100101010001010010101001010100101011100010101'
-#print predict(s)[2]
+print "Type in a string of 0s and 1s, then hit enter."
+print "The program will predict your next entry based on the previous two."
+s = raw_input()
+if all(x == '0' or x == '1' for x in s):
+    print "success rate:", predict(s)
+else:
+    print "Non-0/1 characters entered. Try again."
 
 
-#s = '1000101011101010010101011110101010010101011010101000101010110'
-#print predict(s)[2]
-
-import random
-s = ''
-for i in range(10000):
-    if random.random() < .7:
-        s += '0'
-    else:
-        s += '1'
-a,b, _ = predict(s)
-print float(a)/b
